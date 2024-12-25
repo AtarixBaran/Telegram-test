@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL | WinR</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="UnityHandler.js"></script>
+
+    <style type="text/css">
+            body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial;
+            }
+            .container {
+            text-align: left;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translate(0, -50%);
+            }
+            .circle-button {
+            width: 100px;
+            height: 100px;
+            border: none;
+            border-radius: 50%;
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            }
+            .circle-button:hover {
+            background-color: #2980b9;
+            }
+            .button-text {
+            display: inline-block;
+            }
+        </style>
+
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=750 height=1160></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">WinR</div>
+      </div>
+    </div>
+
+    <div class="container">
+            <h1>Coin Flip</h1>
+            <button class="circle-button" onclick="StartRace()">
+            <span class="button-text">Start Race</span>
+            </button>
+            <button class="circle-button" onclick="SetWinner()">
+            <span class="button-text">Set Winner</span>
+            </button>
+            <input type="number" id="winnerId" value="0">
+        </div>
+
+        <script>
+        var unityHandler = new UnityHandler();
+        var scoreCount = 0;
+
+            function StartRace()
+            {
+                unityHandler.SendMessage("M3_SendGrid", "[[10, 1002, 5, 5, 3], [9, 9, 10, 9, 9], [5, 5, 9, 9, 2, 2], [6, 6, 2, 2, 2, 2, 5, 5], [6, 6, 2, 2, 4, 4, 2], [8, 8, 2, 2, 8, 8, 4]]");
+                
+            }
+
+            function SetWinner()
+            {
+                unityHandler.SendMessage("M3_Login", "2");
+                unityHandler.SendMessage("M3_SetCreditValue", "999999");
+              
+            }
+         
+			unityHandler.onGetMessage = function (message, param) 
+            {
+
+                if (message == "M3_UpdateGrid")
+                {
+                  unityHandler.SendMessage("M3_SendGrid", "[[10, 1002, 5, 5, 3], [9, 9, 10, 9, 9], [5, 5, 9, 9, 2, 2], [6, 6, 2, 2, 2, 2, 5, 5], [6, 6, 2, 2, 4, 4, 2], [8, 8, 2, 2, 8, 8, 4]]");
+                }
+                if (message == "M3_ChangeBet")
+                {
+                  console.log("Bet" + param);
+                }
+
+                if (message == "M3_OnDeactiveAutoSpinMode") {
+                    console.log("AutoSpin Deaktif");
+                }   
+
+            }
+        </script>
+  </body>
+</html>
