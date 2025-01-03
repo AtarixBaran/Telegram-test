@@ -31,13 +31,13 @@ class UnityHandler {
 			updateBannerVisibility();
 		}
 		var buildUrl = "Build";
-		      var loaderUrl = buildUrl + "/Gates 1000 Mobil V6.loader.js";
+		      var loaderUrl = buildUrl + "/Telegram Sweet.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Gates 1000 Mobil V6.data.unityweb",
-        frameworkUrl: buildUrl + "/Gates 1000 Mobil V6.framework.js.unityweb",
-        codeUrl: buildUrl + "/Gates 1000 Mobil V6.wasm.unityweb",
+        dataUrl: buildUrl + "/Telegram Sweet.data.unityweb",
+        frameworkUrl: buildUrl + "/Telegram Sweet.framework.js.unityweb",
+        codeUrl: buildUrl + "/Telegram Sweet.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "Illumate Studios",
+        companyName: "ILU Studios",
         productName: "WinR",
         productVersion: "0.1.0",
         showBanner: unityShowBanner,
